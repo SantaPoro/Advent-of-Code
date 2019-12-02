@@ -17,30 +17,53 @@ public class Main {
 
         }
 
-
-        for (int i = 0; i < intArray.length ; i += 4) {
-            if(intArray[i] == 1){
-                int term1 = intArray[intArray[i+1]];
-                int term2 = intArray[intArray[i+2]];
-                int adress = intArray[i+3];
-                intArray[adress] = term1+term2;
-
-            }
-            else if(intArray[i] == 2){
-                int term1 = intArray[intArray[i+1]];
-                int term2 = intArray[intArray[i+2]];
-                int adress = intArray[i+3];
-                intArray[adress] = term1*term2;
-
-            }
-            else if(intArray[i] == 99){
-                break;
+        for (int noun = 0; noun <= 99; noun++) {
+            for (int verb = 0; verb <= 99 ; verb++) {
+                findvalue(intArray,noun,verb);
             }
         }
-        for (int i = 0; i < intArray.length ; i++) {
-            System.out.println(intArray[i]);
 
-        }
         System.out.println(intArray[0]);
+    }
+    public static int findvalue(int[] a, int noun, int verb ){
+        int[] copya = new int[a.length];
+        for (int i = 0; i < a.length; i++) {
+            copya[i] = a[i];
+        }
+        copya[1] = noun;
+        copya[2] = verb;
+        int value = calculate(copya);
+        if( value == 19690720){
+            System.out.println(100*noun+verb);
+            return 100*noun + verb;
+        }
+        else return 0;
+    }
+
+    public static int calculate(int[] a){
+
+        for (int i = 0; i < a.length ; i += 4) {
+            if(a[i] == 1){
+                int term1 = a[a[i+1]];
+                int term2 = a[a[i+2]];
+                int adress = a[i+3];
+                a[adress] = term1+term2;
+
+            }
+            else if(a[i] == 2){
+                int term1 = a[a[i+1]];
+                int term2 = a[a[i+2]];
+                int adress = a[i+3];
+                a[adress] = term1*term2;
+
+            }
+            else if(a[i] == 99){
+                return a[0];
+            }
+        }
+        for (int i = 0; i < a.length ; i++) {
+            System.out.println(a[i]);
+        }
+        return -1;
     }
 }
