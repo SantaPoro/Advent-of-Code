@@ -7,20 +7,43 @@ pub fn solve_part_1() -> String {
     let mut horizontal = 0;
     let mut depth = 0;
     for line in input.lines() {
-        let mut split: = line.split(' ').collect();
-        let number = split.parse();
-        println!("{:?}", number);
-        if split.eq("down"){
-            let number = ;
-
-            horizontal += split.next();
-        } else if (split.next().cmp("forward"){
-        } else if (split.next().cmp("up"){
+        let mut split: Vec<&str> = line.split(' ').collect();
+        let number: i32 = split[1].parse().unwrap();
+        if split[0].eq("down") {
+            depth += number;
+        }
+        if split[0] == ("up") {
+            depth -= number;
+        }
+        if split[0] == ("forward") {
+            horizontal += number;
         }
     }
-    "".to_string()
+    let result = depth * horizontal;
+    result.to_string()
 }
 
 pub fn solve_part_2() -> String {
-    "".to_string()
+    let input = include_str!("input.txt");
+    let mut horizontal = 0;
+    let mut depth = 0;
+    let mut aim = 0;
+    for line in input.lines() {
+        let mut split: Vec<&str> = line.split(' ').collect();
+        let number: i32 = split[1].parse().unwrap();
+        if split[0].eq("down") {
+            //depth += number;
+            aim += number;
+        }
+        if split[0] == ("up") {
+            //depth -= number;
+            aim -= number;
+        }
+        if split[0] == ("forward") {
+            horizontal += number;
+            depth += aim * number;
+        }
+    }
+    let result = depth * horizontal;
+    result.to_string()
 }
