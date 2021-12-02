@@ -26,13 +26,11 @@ pub fn solve_part_1() -> String {
 
 pub fn solve_part_2() -> String {
     let input = include_str!("input.txt");
-    let mut current_set = 0;
-    let mut previous_set = 0;
     let mut total = 0;
     let mut list: Vec<u32> = Vec::new();
     for line in input.lines() {
-        current_set = 0;
-        previous_set = 0;
+        let mut current_set = 0;
+        let mut previous_set = 0;
         let number = line.parse::<u32>().unwrap();
         if list.len() < 3 {
             list.push(number);
